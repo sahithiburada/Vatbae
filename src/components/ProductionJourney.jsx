@@ -73,16 +73,12 @@ const ProductionJourney = () => {
           </div>
           <h3>{steps[0].title}</h3>
           <p>{steps[0].description}</p>
-          <a
-            href="#"
+          <button
             className="learn-more"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection(steps[0].link);
-            }}
+            onClick={() => scrollToSection(steps[0].link)}
           >
             Learn more <span>→</span>
-          </a>
+          </button>
         </div>
 
         <div className="step-image-wrapper">
@@ -103,16 +99,12 @@ const ProductionJourney = () => {
             </div>
             <h4>{step.title}</h4>
             <p>{step.description}</p>
-            <a
-              href="#"
+            <button
               className="learn-more"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(step.link);
-              }}
+              onClick={() => scrollToSection(step.link)}
             >
               Learn more <span>→</span>
-            </a>
+            </button>
           </div>
         ))}
       </div>
