@@ -1,0 +1,413 @@
+/* ================================
+   BASE STYLING (Desktop Default)
+================================ */
+.contact-section {
+  background: #fff;
+  width: 100%;
+  padding: 40px 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 55px;
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* ================================
+   LEFT SIDE (Reach Us + Info)
+================================ */
+.contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 47%;
+}
+
+.contact-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.contact-subtitle {
+  color: #c86b4a;
+  font-size: 24px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.contact-title {
+  color: #31190d;
+  font-size: 42px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 52px;
+  margin-bottom: 6px;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(49, 25, 13, 0.38);
+  padding: 10px 0;
+  gap: 8px;
+}
+
+.top-border {
+  border-top: 1px solid rgba(49, 25, 13, 0.38);
+  padding-top: 8px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.contact-block h4 {
+  color: #31190d;
+  font-size: 18px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 2px;
+}
+
+.contact-block p {
+  color: #2b1b0f;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 48%;
+}
+
+.info-item img {
+  flex-shrink: 0;
+}
+
+/* ================================
+   SOCIAL LINKS
+================================ */
+.social-section {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.social-section h4 {
+  color: #31190d;
+  font-size: 20px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  line-height: 28px;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #31190d;
+  border-radius: 50%;
+  padding: 8px;
+  transition: 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.08);
+}
+
+/* ================================
+   RIGHT SIDE (Form)
+================================ */
+.contact-form {
+  background: #31190d;
+  border-radius: 24px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 22px;
+  width: 45%;
+  margin-top: 26px;
+}
+
+.contact-form label {
+  color: white;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.required {
+  color: #c86b4a;
+  margin-left: 4px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fffaf5;
+  color: white;
+  font-size: 17px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  line-height: 28px;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+
+/* ✅ Fixed textarea overflow issue */
+.contact-form textarea {
+  border: 2px solid #c86b4a;
+  border-radius: 6px;
+  background: rgba(200, 107, 74, 0.21);
+  height: 80px;
+  padding: 8px;
+  resize: none;
+  width: calc(100% - 4px); /* perfectly fits inside form */
+  box-sizing: border-box;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #c86b4a;
+}
+
+/* ================================
+   SEND BUTTON
+================================ */
+.send-btn {
+  background: #c86b4a;
+  color: #fcfcfc;
+  font-size: 15px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  outline: 1px solid rgba(210, 180, 140, 0.7);
+  transition: 0.3s ease;
+  align-self: flex-start;
+}
+
+.send-btn:hover {
+  transform: scale(1.04);
+  background: #d6815b;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+/* ✅ Tablet (up to 1024px) */
+@media (max-width: 1024px) {
+  .contact-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .contact-left,
+  .contact-form {
+    width: 48%;
+  }
+
+  .contact-subtitle {
+    font-size: 22px;
+  }
+
+  .contact-title {
+    font-size: 36px;
+  }
+
+  .contact-form {
+    padding: 25px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 15px;
+  }
+}
+
+/* ✅ Mobile Devices (up to 768px) */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .contact-left {
+    width: 52%;
+    order: 1;
+  }
+
+  .contact-title {
+    font-size: 28px;
+  }
+
+  .contact-subtitle {
+    font-size: 18px;
+  }
+
+  .contact-block p {
+    font-size: 13.5px;
+    line-height: 18px;
+    max-width: 100%;
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  .contact-block p br {
+    display: none;
+  }
+
+  .contact-block h4 {
+    font-size: 15px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-form {
+    width: 44%;
+    order: 2;
+    padding: 18px 16px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 13.5px;
+  }
+
+  .contact-form textarea {
+    height: 62px;
+    padding: 6px;
+    width: calc(100% - 4px);
+  }
+
+  .send-btn {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  .social-section h4 {
+    font-size: 16px;
+  }
+
+  .social-icons img {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+  }
+}
+
+/* ✅ Small Mobiles (up to 480px) */
+@media (max-width: 480px) {
+  .contact-wrapper {
+    gap: 15px;
+  }
+
+  .contact-left {
+    width: 54%;
+  }
+
+  .contact-form {
+    width: 65%;
+    padding: 14px 13px;
+    border-radius: 16px;
+  }
+
+  .contact-subtitle {
+    font-size: 16px;
+  }
+
+  .contact-title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .contact-block p {
+    font-size: 12.5px;
+    line-height: 17px;
+    white-space: normal;
+    word-break: keep-all;
+  }
+
+  .contact-block p br {
+    display: none;
+  }
+
+  .contact-block h4 {
+    font-size: 14px;
+  }
+
+  .social-section {
+    gap: 10px;
+  }
+
+  .social-icons img {
+    width: 22px;
+    height: 22px;
+    padding: 4px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 12.5px;
+  }
+
+  .contact-form textarea {
+    height: 48px; /* ✅ smaller, fits perfectly inside */
+    padding: 6px;
+    border: 1.5px solid #c86b4a;
+    width: calc(100% - 3px);
+    box-sizing: border-box;
+  }
+
+  .send-btn {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}

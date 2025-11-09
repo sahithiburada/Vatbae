@@ -1,0 +1,194 @@
+/* ---------------- GLOBAL RESET ---------------- */
+body,
+html,
+#root,
+.App {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #ffffff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ---------------- HERO SECTION ---------------- */
+.hero-wrapper {
+  position: relative;
+  z-index: 3;
+  background: transparent;
+  padding-bottom: 0;
+  margin-bottom: -2px;
+}
+
+.hero-section {
+  position: relative;
+  z-index: 6;
+  background: transparent;
+}
+
+.hero-section img,
+.hero-section video {
+  position: relative;
+  z-index: 7;
+}
+
+/* ---------------- FLOWING CURVE TRANSITION ---------------- */
+.smooth-transition-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  background: transparent;
+  margin-top: -120px; /* keeps curve visible */
+  z-index: 5;
+}
+
+.smooth-transition-divider svg {
+  display: block;
+  width: 100%;
+  height: 220px;
+}
+
+.smooth-transition-divider path {
+  fill: #2b1b0f;
+  transition: none;
+}
+
+/* ---------------- ABOUT SECTION ---------------- */
+.about-section {
+  background: #2b1b0f;
+  position: relative;
+  z-index: 4;
+  margin-top: -10px;
+  padding-top: 0;
+}
+
+.about-section .our-story-btn {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #c26847;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: default;
+  z-index: 6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------------- ABOUT CONTENT ---------------- */
+.about-section .about-content {
+  padding: 40px 100px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #e08054;
+}
+
+.about-section .about-content h2 {
+  color: #e08054;
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.about-section .about-content p {
+  color: #f2b296;
+  font-size: 18px;
+  line-height: 1.7;
+  width: 45%;
+  margin-top: 10px;
+}
+
+/* ---------------- PRODUCTION JOURNEY SECTION ---------------- */
+.production-journey {
+  background: #fff;
+  padding: 100px 120px;
+  text-align: center;
+  position: relative;
+}
+
+.production-journey h2 {
+  color: #2b1b0f;
+  font-size: 64px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.production-journey p {
+  color: #7b4125;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+/* Optional: smooth visual continuity to next section */
+.production-journey::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, #ffffff, #fdfdfd, #fff);
+  z-index: 2;
+}
+
+/* ---------------- FABRICS SECTION ---------------- */
+.fabrics-section {
+  position: relative;
+  z-index: 3;
+  background: #fff;
+  transition: background 0.3s ease;
+}
+
+/* Optional fade transition on scroll */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fabrics-section {
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 1024px) {
+  .about-section .about-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-section .about-content p {
+    width: 90%;
+  }
+
+  .production-journey {
+    padding: 80px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .production-journey h2 {
+    font-size: 44px;
+  }
+
+  .about-section .our-story-btn {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
+}
