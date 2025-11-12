@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "../styles/PrintsSection.css";
 
-// ✅ Final import list (removed highDensity & puffPrint)
 import acidwash from "../assets/print-acidwash.png";
 import sprayworks from "../assets/print-sprayworks.png";
 import dtg from "../assets/print-dtg.png";
@@ -10,7 +9,6 @@ import screenPrinting from "../assets/print-screen.png";
 import embroidery from "../assets/print-embroidery.png";
 import distressed from "../assets/print-distressed.png";
 
-// ✅ Final print array (only includes your intended prints)
 const prints = [
   { name: "Acid Wash", img: acidwash },
   { name: "Spray Works", img: sprayworks },
@@ -40,7 +38,7 @@ const PrintsSection = () => {
         </p>
       </div>
 
-      {/* ✅ Desktop view */}
+      {/* ✅ Conditionally render based on screen size */}
       {!isMobile ? (
         <div className="prints-grid desktop-grid">
           {prints.map((print, index) => (
@@ -58,7 +56,6 @@ const PrintsSection = () => {
           ))}
         </div>
       ) : (
-        /* ✅ Mobile zigzag layout */
         <div className="mobile-zigzag">
           <div className="stitch-line"></div>
           {prints.map((print, index) => (

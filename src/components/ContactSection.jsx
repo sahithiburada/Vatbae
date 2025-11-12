@@ -14,10 +14,7 @@ const ContactSection = () => {
     message: "",
   });
   const [errors, setErrors] = useState({});
-  const [toast, setToast] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [desktopChoiceOpen, setDesktopChoiceOpen] = useState(false);
-  const [preparedURLs, setPreparedURLs] = useState(null);
 
   const validate = () => {
     let newErrors = {};
@@ -40,78 +37,22 @@ const ContactSection = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // Prepare the encoded messages and both URIs
-  const prepareWhatsAppLinks = () => {
-    const { name, number, email, message } = formData;
-    const plainText = `Hello Vatbae Team!\nName: ${name}\nPhone: ${number}\nEmail: ${email}\nMessage: ${message}`;
-    const encodedText = encodeURIComponent(plainText);
-    const phoneNumber = "919677780345";
-
-    // App URI (whatsapp scheme) and Web URL
-    const appUri = `whatsapp://send?phone=${phoneNumber}&text=${encodedText}`;
-    const webUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedText}`;
-    return { plainText, appUri, webUrl };
-  };
-
-  const handleWhatsAppSend = async (e) => {
+  const handleWhatsAppSend = (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    const { plainText, appUri, webUrl } = prepareWhatsAppLinks();
+    const { name, number, email, message } = formData;
+    const phoneNumber = "919677780345";
+    const text = `Hello Vatbae Team!%0A
+Name: ${name}%0A
+Phone: ${number}%0A
+Email: ${email}%0A
+Message: ${message}`;
+    window.open(`https://wa.me/${phoneNumber}?text=${text}`, "_blank");
 
-    // Try to copy to clipboard (best-effort)
-    try {
-      await navigator.clipboard.writeText(plainText);
-      setToast("📋 Message copied! Choose how you'd like to open WhatsApp.");
-    } catch {
-      setToast("Opening WhatsApp..."); // still continue even if copy fails
-    }
-
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    // Save prepared links to state so modal buttons can use them
-    setPreparedURLs({ appUri, webUrl });
-
-    if (isMobile) {
-      // On mobile directly attempt to open the WhatsApp app scheme first
-      window.open(appUri, "_blank");
-      setSuccess(true);
-      setFormData({ name: "", number: "", email: "", message: "" });
-      setTimeout(() => {
-        setToast(null);
-        setSuccess(false);
-      }, 3500);
-    } else {
-      // On desktop, show choice modal (app vs web)
-      setDesktopChoiceOpen(true);
-      // Keep form populated until user picks (or they can cancel)
-    }
-  };
-
-  // When user explicitly chooses "Open App" on desktop
-  const openWhatsAppApp = () => {
-    if (!preparedURLs) return;
-    // Attempt app scheme
-    window.open(preparedURLs.appUri, "_blank");
-    closeDesktopChoiceAndReset();
-  };
-
-  // When user chooses "Open Web" on desktop
-  const openWhatsAppWeb = () => {
-    if (!preparedURLs) return;
-    window.open(preparedURLs.webUrl, "_blank");
-    closeDesktopChoiceAndReset();
-  };
-
-  const closeDesktopChoiceAndReset = () => {
-    setDesktopChoiceOpen(false);
     setSuccess(true);
     setFormData({ name: "", number: "", email: "", message: "" });
-    setTimeout(() => {
-      setToast(null);
-      setSuccess(false);
-      setPreparedURLs(null);
-    }, 3500);
+    setTimeout(() => setSuccess(false), 4000);
   };
 
   return (
@@ -166,7 +107,11 @@ const ContactSection = () => {
               <a href="https://www.instagram.com/vatbae.studio" target="_blank" rel="noopener noreferrer">
                 <img src={instagramIcon} alt="Instagram" />
               </a>
-              <a href="https://www.linkedin.com/in/vatbae-studio" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.linkedin.com/in/vatbae-studio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img src={linkedinIcon} alt="LinkedIn" />
               </a>
             </div>
@@ -234,34 +179,9 @@ const ContactSection = () => {
             Send →
           </button>
 
-          {success && <p className="success">✅ Message ready in WhatsApp!</p>}
+          {success && <p className="success">✅ Message sent via WhatsApp!</p>}
         </form>
       </div>
-
-      {/* Toast */}
-      {toast && <div className="toast">{toast}</div>}
-
-      {/* Desktop choice modal */}
-      {desktopChoiceOpen && (
-        <div className="desktop-choice-overlay" role="dialog" aria-modal="true">
-          <div className="desktop-choice">
-            <h4>Open WhatsApp</h4>
-            <p>Choose how you'd like to continue:</p>
-            <div className="desktop-choice-buttons">
-              <button className="choice app" onClick={openWhatsAppApp}>
-                Open WhatsApp App
-              </button>
-              <button className="choice web" onClick={openWhatsAppWeb}>
-                Open WhatsApp Web
-              </button>
-              <button className="choice cancel" onClick={() => setDesktopChoiceOpen(false)}>
-                Cancel
-              </button>
-            </div>
-            <small className="choice-note">If the desktop app is installed, the app button will open it.</small>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
