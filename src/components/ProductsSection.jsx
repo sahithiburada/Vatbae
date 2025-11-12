@@ -84,9 +84,8 @@ const ProductsSection = () => {
       <div className="products-header">
         <h2>PRODUCTS</h2>
         <p>
-          Explore our wide apparel collection — Unisex Tops, Bottoms, Trending
-          Selectives, and Kids Wear — crafted for quality, durability, and
-          comfort.
+          Explore our wide apparel collection — Unisex Tops, Bottoms, Trending Selectives, Kids Wear, 
+          and a versatile range of knitted garments — all crafted for quality, durability, and comfort.
         </p>
       </div>
 

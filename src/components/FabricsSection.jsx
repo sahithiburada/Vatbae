@@ -53,8 +53,8 @@ const FabricsSection = () => {
       <div className="fabrics-header">
         <h2>FABRICS</h2>
         <p>
-          Crafted to perfection, each fabric is engineered for texture,
-          durability, and the seamless production of premium garments.
+          Crafted to perfection — from classic weaves to every type of knitted fabric, 
+          designed for durability, comfort, and premium-quality garments.
         </p>
       </div>
 
