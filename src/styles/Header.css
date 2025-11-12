@@ -1,0 +1,217 @@
+/* ---------------- HEADER BASE ---------------- */
+.header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.header-inner {
+  max-width: 1324px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---------------- LOGO ---------------- */
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-placeholder {
+  height: 44px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-placeholder:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* ---------------- NAVIGATION ---------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  color: #2b1b0f;
+}
+
+.nav-item {
+  position: relative;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #31190d;
+  transform: translateY(-2px);
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #31190d;
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+/* ---------------- DROPDOWNS ---------------- */
+.dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  z-index: 10;
+}
+
+.dropdown div {
+  padding: 10px 16px;
+  color: #2b1b0f;
+  transition: all 0.2s ease;
+}
+
+.dropdown div:hover {
+  background: rgba(49, 25, 13, 0.1);
+  color: #31190d;
+}
+
+/* ---------------- BUTTONS ---------------- */
+.btn-group,
+.mobile-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-outline,
+.btn-fill {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Outline button */
+.btn-outline {
+  border: 2px solid #31190d;
+  background: transparent;
+  color: #31190d;
+}
+
+.btn-outline:hover {
+  background: #a36e51;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* Filled button */
+.btn-fill {
+  background: #31190d;
+  border: 2px solid #31190d;
+  color: #fff;
+}
+
+.btn-fill:hover {
+  background: #a36e51;
+  transform: scale(1.05);
+}
+
+/* ---------------- MENU ICON ---------------- */
+.menu-icon {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #31190d;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 900px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background: #fafafa;
+    width: 100%;
+    align-items: center;
+  }
+
+  .dropdown div {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* ✅ Mobile buttons only visible in menu */
+  .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .mobile-buttons button {
+    width: 70%;
+  }
+
+  /* ✅ Hide desktop buttons on mobile */
+  .desktop-buttons {
+    display: none;
+  }
+}
+
+/* ✅ Hide mobile buttons on desktop */
+@media (min-width: 901px) {
+  .mobile-buttons {
+    display: none;
+  }
+}
