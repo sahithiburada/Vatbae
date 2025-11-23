@@ -1,45 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/AboutSection.css";
 import videoThumbnail from "../assets/video-thumbnail.png";
 import craftedBg from "../assets/crafted-bg.png";
 
-// Import your local video
-import aboutVideo from "../assets/about-video.mp4";
-
 const AboutSection = () => {
   const [playVideo, setPlayVideo] = useState(false);
-  // aspectPct is padding-top percent used to preserve aspect ratio (height/width * 100)
-  // default to 56.25 (16:9) until metadata loads
-  const [aspectPct, setAspectPct] = useState(56.25);
-
-  // Preload video metadata to read natural width/height without playing
-  useEffect(() => {
-    let vid = document.createElement("video");
-    vid.preload = "metadata";
-    vid.src = aboutVideo;
-
-    const handleLoadedMetadata = () => {
-      if (vid.videoWidth && vid.videoHeight) {
-        const pct = (vid.videoHeight / vid.videoWidth) * 100;
-        setAspectPct(pct);
-      }
-    };
-
-    // Some browsers need the event listener before setting src, but usually both work
-    vid.addEventListener("loadedmetadata", handleLoadedMetadata);
-    // If the metadata is already available, try to compute immediately
-    if (vid.readyState >= 1) {
-      handleLoadedMetadata();
-    }
-
-    // cleanup
-    return () => {
-      vid.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      // dereference to allow GC
-      vid.src = "";
-      vid = null;
-    };
-  }, []);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -49,7 +14,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="about-section">
+    <section className="about-section" id="about">
       <div className="about-inner">
         <div className="story-tag">Our Story</div>
 
@@ -69,17 +34,14 @@ const AboutSection = () => {
         <div className="about-main">
           {/* Local Video Section */}
           <div className="about-video-block">
-            {/* video-wrapper uses inline style paddingTop to preserve aspect ratio */}
-            <div
-              className="video-wrapper"
-              style={{ paddingTop: `${aspectPct}%` }}
-            >
+            <div className="video-wrapper">
               {!playVideo ? (
                 <>
                   <img
                     src={videoThumbnail}
                     alt="Video Thumbnail"
                     className="video-thumbnail media-cover"
+                    onClick={() => setPlayVideo(true)}
                   />
                   <div
                     className="video-play-icon"
@@ -93,12 +55,15 @@ const AboutSection = () => {
               ) : (
                 <video
                   className="local-video media-cover"
-                  src={aboutVideo}
+                  src="/about-video.mp4" // ✅ from public folder
                   controls
                   autoPlay
-                  
+                  playsInline
+                  muted={false}
                   aria-label="About video"
-                />
+                >
+                  Your browser does not support the video tag.
+                </video>
               )}
             </div>
 
