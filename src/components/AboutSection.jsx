@@ -3,6 +3,9 @@ import "../styles/AboutSection.css";
 import videoThumbnail from "../assets/video-thumbnail.png";
 import craftedBg from "../assets/crafted-bg.png";
 
+// ⭐ Import video exactly like an image
+import aboutVideo from "../assets/about-video.mp4";
+
 const AboutSection = () => {
   const [playVideo, setPlayVideo] = useState(false);
 
@@ -12,9 +15,6 @@ const AboutSection = () => {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  // Build the correct public URL for the video (works reliably on Vercel)
-  const videoSrc = `${process.env.PUBLIC_URL}/about-video.mp4`;
 
   return (
     <section className="about-section" id="about">
@@ -35,7 +35,8 @@ const AboutSection = () => {
         </div>
 
         <div className="about-main">
-          {/* Local Video Section */}
+
+          {/* Video Block */}
           <div className="about-video-block">
             <div className="video-wrapper">
               {!playVideo ? (
@@ -49,8 +50,6 @@ const AboutSection = () => {
                   <div
                     className="video-play-icon"
                     onClick={() => setPlayVideo(true)}
-                    aria-label="Play video"
-                    role="button"
                   >
                     ▶
                   </div>
@@ -58,36 +57,25 @@ const AboutSection = () => {
               ) : (
                 <video
                   className="local-video media-cover"
-                  src={videoSrc} // ✅ served from /public via PUBLIC_URL
+                  src={aboutVideo} // ⭐ directly imported file
                   controls
                   autoPlay
                   playsInline
-                  preload="metadata"
-                  muted={false}
-                  aria-label="About video"
-                  onError={() => {
-                    console.error("Error loading about-video.mp4");
-                    setPlayVideo(false); // go back to thumbnail if it fails
-                  }}
-                >
-                  Your browser does not support the video tag.
-                </video>
+                />
               )}
             </div>
 
             <div className="video-caption">
-              <h3 className="video-heading">
-                Driven By Quality, Defined By Detail
-              </h3>
+              <h3 className="video-heading">Driven By Quality, Defined By Detail</h3>
               <p className="video-text">
-                Our expertise extends across men’s, women’s, and kidswear — from
-                tops and bottoms to innerwear. Each piece reflects our focus on
-                comfort, durability, and precision.
+                Our expertise extends across men’s, women’s, and kidswear — from tops
+                and bottoms to innerwear. Each piece reflects our focus on comfort,
+                durability, and precision.
               </p>
             </div>
           </div>
 
-          {/* Crafted Section */}
+          {/* Crafted Card */}
           <div
             className="crafted-block"
             style={{
@@ -97,18 +85,15 @@ const AboutSection = () => {
             <div className="crafted-card">
               <h3 className="crafted-title">Crafted For Every Brand</h3>
               <p className="crafted-description">
-                From everyday basics to premium apparel, we believe great
-                clothing begins with better fabrics and ends with thoughtful
-                design for every brand we work with.
+                From everyday basics to premium apparel, we believe great clothing
+                begins with better fabrics and ends with thoughtful design.
               </p>
-              <button
-                className="crafted-btn"
-                onClick={() => scrollToSection("contact")}
-              >
+              <button className="crafted-btn" onClick={() => scrollToSection("contact")}>
                 Begin Yours →
               </button>
             </div>
           </div>
+
         </div>
       </div>
     </section>
