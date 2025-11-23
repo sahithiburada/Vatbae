@@ -298,7 +298,6 @@
     .about-main {
         gap: 16px;
     }
-    /* On small screens the wrapper will adapt automatically using aspect padding */
     .video-wrapper {
         border-radius: 6px;
     }

@@ -96,7 +96,7 @@ const AboutSection = () => {
                   src={aboutVideo}
                   controls
                   autoPlay
-                  // small accessibility touch
+                  
                   aria-label="About video"
                 />
               )}
