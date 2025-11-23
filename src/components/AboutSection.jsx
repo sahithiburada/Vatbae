@@ -13,6 +13,9 @@ const AboutSection = () => {
     }
   };
 
+  // Build the correct public URL for the video (works reliably on Vercel)
+  const videoSrc = `${process.env.PUBLIC_URL}/about-video.mp4`;
+
   return (
     <section className="about-section" id="about">
       <div className="about-inner">
@@ -55,12 +58,17 @@ const AboutSection = () => {
               ) : (
                 <video
                   className="local-video media-cover"
-                  src="/about-video.mp4" // ✅ from public folder
+                  src={videoSrc} // ✅ served from /public via PUBLIC_URL
                   controls
                   autoPlay
                   playsInline
+                  preload="metadata"
                   muted={false}
                   aria-label="About video"
+                  onError={() => {
+                    console.error("Error loading about-video.mp4");
+                    setPlayVideo(false); // go back to thumbnail if it fails
+                  }}
                 >
                   Your browser does not support the video tag.
                 </video>
