@@ -3,9 +3,6 @@ import "../styles/AboutSection.css";
 import videoThumbnail from "../assets/video-thumbnail.png";
 import craftedBg from "../assets/crafted-bg.png";
 
-// ⭐ Import video exactly like an image
-import aboutVideo from "../assets/about-video.mp4";
-
 const AboutSection = () => {
   const [playVideo, setPlayVideo] = useState(false);
 
@@ -15,6 +12,9 @@ const AboutSection = () => {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // ✅ Video is served from the public folder: public/about-video.mp4
+  const videoSrc = "/about-video.mp4";
 
   return (
     <section className="about-section" id="about">
@@ -35,7 +35,6 @@ const AboutSection = () => {
         </div>
 
         <div className="about-main">
-
           {/* Video Block */}
           <div className="about-video-block">
             <div className="video-wrapper">
@@ -50,6 +49,8 @@ const AboutSection = () => {
                   <div
                     className="video-play-icon"
                     onClick={() => setPlayVideo(true)}
+                    aria-label="Play video"
+                    role="button"
                   >
                     ▶
                   </div>
@@ -57,11 +58,19 @@ const AboutSection = () => {
               ) : (
                 <video
                   className="local-video media-cover"
-                  src={aboutVideo} // ⭐ directly imported file
+                  src={videoSrc}
                   controls
                   autoPlay
                   playsInline
-                />
+                  preload="metadata"
+                  aria-label="About video"
+                  onError={() => {
+                    console.error("Error loading /about-video.mp4");
+                    setPlayVideo(false); // go back to thumbnail if it fails
+                  }}
+                >
+                  Your browser does not support the video tag.
+                </video>
               )}
             </div>
 
@@ -88,12 +97,14 @@ const AboutSection = () => {
                 From everyday basics to premium apparel, we believe great clothing
                 begins with better fabrics and ends with thoughtful design.
               </p>
-              <button className="crafted-btn" onClick={() => scrollToSection("contact")}>
+              <button
+                className="crafted-btn"
+                onClick={() => scrollToSection("contact")}
+              >
                 Begin Yours →
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </section>
